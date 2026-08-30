@@ -1,0 +1,52 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": "worker/index.ts",
+  "name": "spotkick",
+  "account_id": "3829c3aa389b43be7a0d3096cadab55d",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "minify": true,
+  "keep_names": false,
+  "keep_vars": true,
+  "vars": {
+    "SENDAR_SENDER_ID": "SPOTKICK"
+  },
+  "alias": {
+    "next/dist/compiled/@vercel/og/index.edge.js": "./cloudflare-shims/og.js",
+    "next/dist/compiled/@vercel/og/index.node.js": "./cloudflare-shims/og.js"
+  },
+  "assets": {
+    "directory": ".cf-build/.open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "spotkick"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "spotkick",
+      "database_id": "a03e576d-1657-4bbd-a11f-36c17c0cd9e6",
+      "migrations_dir": "d1/migrations"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "MATCH", "class_name": "MatchDurableObject" },
+      { "name": "MATCHMAKER", "class_name": "MatchmakingPool" }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["MatchDurableObject", "MatchmakerDurableObject"]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": ["MatchmakingPool"]
+    }
+  ]
+}
