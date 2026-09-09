@@ -1,7 +1,9 @@
 # Spotkick
 
 Interactive eSports web application built for peer-to-peer (P2P) penalty duels, featuring real-time matchmaking, multiplayer mechanics, and custom animations.
-w
+🚀 **Live Production Demo:** [Click here to launch Spotkick](https://spotkick.esoamerica4742.workers.dev)w
+
+
 ## Tech Stack
 
 - Next.js / TypeScript
